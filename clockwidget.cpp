@@ -51,7 +51,7 @@ void ClockWidget::paintEvent(QPaintEvent *event)
 
     int centerX = x + size / 2;
     int centerY = y + size / 2;
-    int hourHandLength = 80;
+    int hourHandLength = 70;
     //-----------------------------------------
 
 
@@ -68,7 +68,18 @@ void ClockWidget::paintEvent(QPaintEvent *event)
     QPen hourPen(Qt::red, 5);
     hourPen.setCapStyle(Qt::RoundCap);
     painter.setPen(hourPen);
-    painter.drawLine(0, 0, 0, -hourHandLength);
+    QPolygonF hourHandShape;
+    hourHandShape << QPointF(0, -hourHandLength)    // Вершина (острый кончик)
+                  << QPointF(-5, 0)                  // Левый нижний угол
+                  << QPointF(0, 10)                  // Низ (в центре, выступает)
+                  << QPointF(5, 0);                  // Правый нижний угол
+
+    // 2. Настраиваем цвет и обводку
+    painter.setBrush(Qt::red);           // Заполнение красным
+    painter.setPen(Qt::black);           // Без обводки (или Qt::black для контура)
+
+    // 3. Рисуем многоугольник
+    painter.drawPolygon(hourHandShape);
 
     painter.restore();  // Восстанавливаем
     //-------------------------------------------------
@@ -83,7 +94,7 @@ void ClockWidget::paintEvent(QPaintEvent *event)
     double minuteAngle = (minute * 6) + (second * 0.1);
 
     // Длина стрелки (длиннее часовой)
-    int minuteHandLength = 95;
+    int minuteHandLength = 90;
 
     painter.save();
     painter.translate(centerX, centerY);
@@ -127,13 +138,25 @@ void ClockWidget::paintEvent(QPaintEvent *event)
 
     // === ДЕЛЕНИЯ ===
 
-    for (int i = 0; i < 12; i++) {
+    // === 60 ДЕЛЕНИЙ (каждую минуту) ===
+    for (int i = 0; i < 60; i++) {
+
         painter.save();
         painter.translate(centerX, centerY);
-        painter.rotate(i * 30);
-        QPen tickPen(Qt::black, 2);
-        painter.setPen(tickPen);
-        painter.drawLine(0, -125, 0, -115);
+        painter.rotate(i * 6);  // 360° / 60 = 6° на каждое деление
+
+        if (i % 5 == 0) {
+            // ЧАСОВОЕ деление (каждые 5 минут)
+            QPen hourTickPen(Qt::black, 3);
+            painter.setPen(hourTickPen);
+            painter.drawLine(0, -125, 0, -110);  // Длинная: 15px
+        } else {
+            // МИНУТНОЕ деление
+            QPen minuteTickPen(Qt::black, 1);
+            painter.setPen(minuteTickPen);
+            painter.drawLine(0, -125, 0, -120);  // Короткая: 5px
+        }
+
         painter.restore();
     }
 
@@ -158,9 +181,13 @@ void ClockWidget::paintEvent(QPaintEvent *event)
         } else {
             number = i;
         } */
-        QRectF textRect(-15, -115, 30, 20);  // Прямоугольник для текста
+        QRectF textRect(-15, -110, 30, 20);  // Прямоугольник для текста
         painter.drawText(textRect, Qt::AlignCenter, QString::number(number));
 
         painter.restore();
     }
+
+    painter.setBrush(Qt::black);
+    painter.setPen(Qt::NoPen);
+    painter.drawEllipse(QPointF(centerX, centerY), 6, 6);
 }

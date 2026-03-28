@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ClockWidget *clock = new ClockWidget(this);
 
     setCentralWidget(clock);
+    setWindowTitle("Часы");
 }
 
 MainWindow::~MainWindow()
