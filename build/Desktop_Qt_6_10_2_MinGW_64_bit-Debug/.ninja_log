@@ -1,0 +1,23 @@
+# ninja log v6
+4	514	7963937355855366	Clocks_workwithQPainter_autogen/timestamp	d494043caf1df4e4
+4	514	7963937355855366	Clocks_workwithQPainter_autogen/mocs_compilation.cpp	d494043caf1df4e4
+4	514	7963937355855366	C:/Users/User/Desktop/qt/Clocks_workwithQPainter/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/Clocks_workwithQPainter_autogen/timestamp	d494043caf1df4e4
+4	514	7963937355855366	C:/Users/User/Desktop/qt/Clocks_workwithQPainter/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/Clocks_workwithQPainter_autogen/mocs_compilation.cpp	d494043caf1df4e4
+518	3386	7963937356305379	CMakeFiles/Clocks_workwithQPainter.dir/Clocks_workwithQPainter_autogen/mocs_compilation.cpp.obj	cd4c8af6dfcf1283
+523	3479	7963937356355372	CMakeFiles/Clocks_workwithQPainter.dir/clockwidget.cpp.obj	6d23b11f0c93a5e
+520	3485	7963937356325378	CMakeFiles/Clocks_workwithQPainter.dir/main.cpp.obj	9fc931f75e3c00fe
+521	3559	7963937356335379	CMakeFiles/Clocks_workwithQPainter.dir/mainwindow.cpp.obj	3bfe2227bbd12d18
+3559	3712	7963937386721129	Clocks_workwithQPainter.exe	5dd454884946b6ae
+9	93	7963937497039512	Clocks_workwithQPainter_autogen/timestamp	d494043caf1df4e4
+9	93	7963937497039512	Clocks_workwithQPainter_autogen/mocs_compilation.cpp	d494043caf1df4e4
+9	93	7963937497039512	C:/Users/User/Desktop/qt/Clocks_workwithQPainter/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/Clocks_workwithQPainter_autogen/timestamp	d494043caf1df4e4
+9	93	7963937497039512	C:/Users/User/Desktop/qt/Clocks_workwithQPainter/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/Clocks_workwithQPainter_autogen/mocs_compilation.cpp	d494043caf1df4e4
+95	2100	7963937497926580	CMakeFiles/Clocks_workwithQPainter.dir/clockwidget.cpp.obj	6d23b11f0c93a5e
+94	2155	7963937497916512	CMakeFiles/Clocks_workwithQPainter.dir/mainwindow.cpp.obj	3bfe2227bbd12d18
+2155	2294	7963937518486662	Clocks_workwithQPainter.exe	5dd454884946b6ae
+7	80	7963940476569811	Clocks_workwithQPainter_autogen/timestamp	d494043caf1df4e4
+7	80	7963940476569811	Clocks_workwithQPainter_autogen/mocs_compilation.cpp	d494043caf1df4e4
+7	80	7963940476569811	C:/Users/User/Desktop/qt/Clocks_workwithQPainter/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/Clocks_workwithQPainter_autogen/timestamp	d494043caf1df4e4
+7	80	7963940476569811	C:/Users/User/Desktop/qt/Clocks_workwithQPainter/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/Clocks_workwithQPainter_autogen/mocs_compilation.cpp	d494043caf1df4e4
+80	1884	7963940477305069	CMakeFiles/Clocks_workwithQPainter.dir/mainwindow.cpp.obj	3bfe2227bbd12d18
+1885	2031	7963940495342607	Clocks_workwithQPainter.exe	5dd454884946b6ae
