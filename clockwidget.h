@@ -2,6 +2,8 @@
 #define CLOCKWIDGET_H
 
 #include <QWidget>
+#include <QTimer>
+#include <QTime>
 
 class ClockWidget : public QWidget
 {
@@ -12,6 +14,8 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event) override;
+private:
+    QTimer *m_timer;
 };
 
 #endif
