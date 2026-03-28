@@ -14,7 +14,7 @@ ClockWidget::ClockWidget(QWidget *parent)
     connect(m_timer, &QTimer::timeout, this,
             static_cast<void(QWidget::*)()>(&QWidget::update));
 
-    m_timer->start(1000);
+    m_timer->start(16);
 }
 
 void ClockWidget::paintEvent(QPaintEvent *event)
@@ -22,7 +22,6 @@ void ClockWidget::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     painter.setRenderHint(QPainter::Antialiasing);
-
     painter.fillRect(rect(), Qt::white);
 
     // ---------КРУГ----------
@@ -84,14 +83,14 @@ void ClockWidget::paintEvent(QPaintEvent *event)
     double minuteAngle = (minute * 6) + (second * 0.1);
 
     // Длина стрелки (длиннее часовой)
-    int minuteHandLength = 100;  // Например, size/1.5 или 100
+    int minuteHandLength = 95;
 
     painter.save();
     painter.translate(centerX, centerY);
     painter.rotate(minuteAngle);
 
     // Настроить перо (синий, тоньше часовой)
-    QPen minutePen(Qt::black, 5);  // Цвет, толщина
+    QPen minutePen(Qt::black, 5);
     minutePen.setCapStyle(Qt::RoundCap);
     painter.setPen(minutePen);
 
@@ -105,7 +104,8 @@ void ClockWidget::paintEvent(QPaintEvent *event)
     // === СЕКУНДНАЯ СТРЕЛКА ===
 
     // Вычислить угол (6° на каждую секунду)
-    double secondAngle = second * 6;
+    int ms = time.msec();  // 0-999
+    double secondAngle = (second * 6) + (ms * 0.006);
 
     // Длина стрелки
     int secondHandLength = 100;
@@ -123,4 +123,44 @@ void ClockWidget::paintEvent(QPaintEvent *event)
     painter.drawLine(0, 0, 0, -secondHandLength);
 
     painter.restore();
+
+
+    // === ДЕЛЕНИЯ ===
+
+    for (int i = 0; i < 12; i++) {
+        painter.save();
+        painter.translate(centerX, centerY);
+        painter.rotate(i * 30);
+        QPen tickPen(Qt::black, 2);
+        painter.setPen(tickPen);
+        painter.drawLine(0, -125, 0, -115);
+        painter.restore();
+    }
+
+
+    // === Цифры ===
+
+    // Настройки для текста
+    painter.setPen(Qt::black);  // Цвет текста
+    painter.setFont(QFont("Arial", 12, QFont::Bold));  // Шрифт, размер, жирный
+
+    for (int i = 0; i < 12; i++)
+    {
+        painter.save();
+        painter.translate(centerX, centerY);
+        painter.rotate(i * 30);  // ← Тот же угол 30°
+
+        // Какое число рисовать?
+        int number = (i == 0) ? 12 : i; // тернарный оператор
+        /* int number;
+        if (i == 0) {
+            number = 12;
+        } else {
+            number = i;
+        } */
+        QRectF textRect(-15, -115, 30, 20);  // Прямоугольник для текста
+        painter.drawText(textRect, Qt::AlignCenter, QString::number(number));
+
+        painter.restore();
+    }
 }
